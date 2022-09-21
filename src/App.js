@@ -1,25 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { fetchProducts } from "./shared/products";
+import { fetchCart } from "./shared/cart";
+import commerce from "../src/lib/commerce";
 
-function App() {
+// Components
+import Nav from "./Components/Nav.js";
+import CartNav from "./Components/CartNav";
+
+// Pages
+import HomePage from "./Pages/HomePage.js";
+
+const App = () => {
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  const handleAddToCart = (productId, quantity) => {
+    commerce.cart
+      .add(productId, quantity)
+      .then((item) => {
+        setCart(item.cart);
+      })
+      .catch((error) => {
+        console.error("There was an error adding the item to the cart", error);
+      });
+  };
+
+  useEffect(() => {
+    const currentProducts = fetchProducts();
+    const currentCart = fetchCart();
+
+    setProducts(currentProducts);
+    setCart(currentCart);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav />
+      <CartNav cart={cart}/>
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            <HomePage products={products} onAddToCart={handleAddToCart} />
+          }
+        ></Route>
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
