@@ -1,24 +1,61 @@
-import "./App.css";
-import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import { fetchProducts } from "./shared/products";
-import { fetchCart } from "./shared/cart";
+import React, { useEffect, useState } from "react";
 import commerce from "../src/lib/commerce";
+import "./styles/scss/styles.scss";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faShoppingBag, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-// new instance of commerce
-// const commerce = new Commerce('{public_api_key}');
+import { Route, Routes } from "react-router-dom";
 
 // Components
 import Nav from "./Components/Nav.js";
 import CartNav from "./Components/CartNav";
+import Checkout from "./Components/Checkout";
+import Hero from "./Components/Hero";
 
 // Pages
 import HomePage from "./Pages/HomePage.js";
 
+library.add(faShoppingBag, faTimes);
+
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
+  const [merchant, setMerchant] = useState({});
   const [loading, setLoading] = useState(false);
+
+  const fetchMerchantDetails = () => {
+    commerce.merchants
+      .about()
+      .then((merchant) => {
+        setMerchant(merchant);
+      })
+      .catch((error) => {
+        console.log("There was an error fetching the merchant details", error);
+      });
+  };
+
+  const fetchProducts = () => {
+    commerce.products
+      .list()
+      .then((products) => {
+        const { data } = products;
+        setProducts(data);
+      })
+      .catch((error) => {
+        console.log("There was an error fetching the products", error);
+      });
+  };
+
+  const fetchCart = () => {
+    commerce.cart
+      .retrieve()
+      .then((cart) => {
+        setCart(cart);
+      })
+      .catch((error) => {
+        console.log("There was an error fetching the cart", error);
+      });
+  };
 
   const handleAddToCart = (productId, quantity) => {
     commerce.cart
@@ -68,15 +105,16 @@ const App = () => {
   };
 
   useEffect(() => {
-    const currentProducts = fetchProducts();
-    const currentCart = fetchCart();
-
-    setProducts(currentProducts);
-    setCart(currentCart);
+    setLoading(true);
+    fetchMerchantDetails();
+    fetchProducts();
+    fetchCart();
+    setLoading(false);
   }, []);
 
   return (
     <div className="App">
+      {loading && <h1>loading...</h1>}
       <Nav />
       <CartNav
         cart={cart}
@@ -84,6 +122,7 @@ const App = () => {
         onRemoveFromCart={handleRemoveFromCart}
         onEmptyCart={handleEmptyCart}
       />
+      <Hero merchant={merchant} />
       <Routes>
         <Route
           exact
@@ -91,6 +130,11 @@ const App = () => {
           element={
             <HomePage products={products} onAddToCart={handleAddToCart} />
           }
+        ></Route>
+        <Route
+          exact
+          path="/checkout"
+          element={<Checkout cart={cart} />}
         ></Route>
       </Routes>
     </div>
