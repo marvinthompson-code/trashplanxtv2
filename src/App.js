@@ -5,6 +5,9 @@ import { fetchProducts } from "./shared/products";
 import { fetchCart } from "./shared/cart";
 import commerce from "../src/lib/commerce";
 
+// new instance of commerce
+// const commerce = new Commerce('{public_api_key}');
+
 // Components
 import Nav from "./Components/Nav.js";
 import CartNav from "./Components/CartNav";
@@ -28,6 +31,42 @@ const App = () => {
       });
   };
 
+  const handleEmptyCart = () => {
+    commerce.cart
+      .empty()
+      .then((resp) => {
+        setCart(resp.cart);
+      })
+      .catch((error) => {
+        console.error("There was an error emptying the cart", error);
+      });
+  };
+
+  const handleRemoveFromCart = (lineItemId) => {
+    commerce.cart
+      .remove(lineItemId)
+      .then((resp) => {
+        setCart(resp.cart);
+      })
+      .catch((error) => {
+        console.error(
+          "There was an error removing the item from the cart",
+          error
+        );
+      });
+  };
+
+  const handleUpdateCartQty = (lineItemId, quantity) => {
+    commerce.cart
+      .update(lineItemId, { quantity })
+      .then((resp) => {
+        setCart(resp.cart);
+      })
+      .catch((error) => {
+        console.log("There was an error updating the cart items", error);
+      });
+  };
+
   useEffect(() => {
     const currentProducts = fetchProducts();
     const currentCart = fetchCart();
@@ -39,7 +78,12 @@ const App = () => {
   return (
     <div className="App">
       <Nav />
-      <CartNav cart={cart}/>
+      <CartNav
+        cart={cart}
+        onUpdateCartQty={handleUpdateCartQty}
+        onRemoveFromCart={handleRemoveFromCart}
+        onEmptyCart={handleEmptyCart}
+      />
       <Routes>
         <Route
           exact

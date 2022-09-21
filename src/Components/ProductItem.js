@@ -2,7 +2,7 @@ import React from "react";
 import { stripHtml } from "string-strip-html";
 import PropTypes from "prop-types";
 
-const productClassnames = {
+const productClassNames = {
   productName: "product__name",
   productCard: "product__card",
   productImage: "product__image",
@@ -22,7 +22,7 @@ const ProductItem = ({ product, onAddToCart }) => {
     productDetails,
     productPrice,
     productName,
-  } = productClassnames;
+  } = productClassNames;
 
   const handleAddToCart = () => {
     onAddToCart(product.id, 1);
