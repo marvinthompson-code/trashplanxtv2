@@ -1,9 +1,10 @@
+import React from "react";
 import ProductList from "../Components/ProductList";
 
-const HomePage = ({ products }) => {
+const HomePage = ({ products, onAddToCart }) => {
   return (
     <>
-      <ProductList products={products} />
+      <ProductList products={products} onAddToCart={onAddToCart} />
     </>
   );
 };

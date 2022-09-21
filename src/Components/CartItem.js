@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 
 const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
@@ -44,8 +45,8 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
   );
 };
 
+export default CartItem;
+
 CartItem.propTypes = {
   item: PropTypes.object,
 };
-
-export default CartItem;

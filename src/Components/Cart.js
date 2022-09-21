@@ -1,5 +1,7 @@
-import CartItem from "./CartItem";
+import React from "react";
 import PropTypes from "prop-types";
+import CartItem from "./CartItem";
+import { Link } from "react-router-dom";
 
 const Cart = ({ cart, onRemoveFromCart, onEmptyCart, onUpdateCartQty }) => {
   const handleEmptyCart = () => {
@@ -12,7 +14,7 @@ const Cart = ({ cart, onRemoveFromCart, onEmptyCart, onUpdateCartQty }) => {
     }
 
     return (
-      <p className="cart__none">
+      <p className={"cart__none"}>
         You have no items in your shopping cart, start adding some!
       </p>
     );
@@ -20,27 +22,37 @@ const Cart = ({ cart, onRemoveFromCart, onEmptyCart, onUpdateCartQty }) => {
 
   const renderItems = () =>
     cart.line_items.map((lineItem) => (
-      <CartItem item={lineItem} key={lineItem.id} className="cart__inner" />
+      <CartItem
+        item={lineItem}
+        key={lineItem.id}
+        className={"cart__inner"}
+        onRemoveFromCart={onRemoveFromCart}
+        onUpdateCartQty={onUpdateCartQty}
+      />
     ));
 
   const renderTotal = () => (
-    <div className="cart__total">
-      <p className="cart__total-title">Subtotal:</p>
-      <p className="cart__total-price">{cart.subtotal.formatted_with_symbol}</p>
+    <div className={"cart__total"}>
+      <p className={"cart__total-title"}>Subtotal:</p>
+      <p className={"cart__total-price"}>
+        {cart.subtotal.formatted_with_symbol}
+      </p>
     </div>
   );
 
   return (
-    <div className="cart">
-      <h4 className="cart__heading">Your Shopping Cart</h4>
+    <div className={"cart"}>
+      <h4 className={"cart__heading"}>Your Shopping Cart</h4>
       {renderEmptyMessage()}
       {renderItems()}
       {renderTotal()}
-      <div className="cart__footer">
-        <button className="cart__btn-empty" onClick={handleEmptyCart}>
+      <div className={"cart__footer"}>
+        <button className={"cart__btn-empty"} onClick={handleEmptyCart}>
           Empty cart
         </button>
-        <button className="cart__btn-checkout">Checkout</button>
+        <Link className={"cart__btn-checkout"} to={"/checkout"}>
+          Checkout
+        </Link>
       </div>
     </div>
   );

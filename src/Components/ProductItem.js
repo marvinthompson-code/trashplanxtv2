@@ -1,6 +1,6 @@
 import React from "react";
-import { stripHtml } from "string-strip-html";
 import PropTypes from "prop-types";
+import { stripHtml } from "string-strip-html";
 
 const productClassNames = {
   productName: "product__name",
