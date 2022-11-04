@@ -49,4 +49,9 @@ export default CartItem;
 
 CartItem.propTypes = {
   item: PropTypes.object,
+  handleUpdateCartQty: PropTypes.func,
+  onUpdateCartQty: () => {},
+  onRemoveFromCart: () => {},
 };
+
+// added onupdateCartQty and onRemoveFromCart to props

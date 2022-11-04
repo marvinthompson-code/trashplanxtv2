@@ -1,5 +1,5 @@
 import React from "react";
-import ProductList from "../Components/ProductList";
+import ProductList from "../components/ProductList";
 
 const HomePage = ({ products, onAddToCart }) => {
   return (

@@ -7,10 +7,10 @@ import { faShoppingBag, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Route, Routes } from "react-router-dom";
 
 // Components
-import Nav from "./Components/Nav.js";
-import CartNav from "./Components/CartNav";
-import Checkout from "./Components/Checkout";
-import Hero from "./Components/Hero";
+import Nav from "./components/Nav.js";
+import CartNav from "./components/CartNav";
+import Checkout from "./components/Checkout";
+import Hero from "./components/Hero";
 
 // Pages
 import HomePage from "./Pages/HomePage.js";
