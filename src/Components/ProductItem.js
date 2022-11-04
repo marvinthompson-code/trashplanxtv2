@@ -45,13 +45,18 @@ const ProductItem = ({ product, onAddToCart }) => {
           <p className={productPrice}>{product.price.formatted_with_symbol}</p>
         </div>
       </div>
-      <button
-        name="Add to cart"
-        className="product__btn"
-        onClick={handleAddToCart}
-      >
-        Quick add
-      </button>
+      <container className={"product__btnContainer"}>
+        <button
+          name="Add to cart"
+          className="product__btn"
+          onClick={handleAddToCart}
+        >
+          Quick add
+        </button>
+        <button name="View product" className="product__view">
+          View
+        </button>
+      </container>
     </div>
   );
 };
