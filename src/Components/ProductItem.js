@@ -30,11 +30,13 @@ const ProductItem = ({ product, onAddToCart }) => {
 
   return (
     <div className={productCard}>
-      <img
-        className={productImage}
-        src={product.image?.url}
-        alt={product.name}
-      />
+      <container className={"product__imageContainer"}>
+        <img
+          className={productImage}
+          src={product.image?.url}
+          alt={product.name}
+        />
+      </container>
       <div className={productInfo}>
         <h4 className={productName}>{product.name}</h4>
         <p className={productDescription}>
