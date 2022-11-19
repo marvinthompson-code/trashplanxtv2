@@ -41,6 +41,20 @@
     }
   }
 
+  &__btnContainer{
+    color: $text-primary;
+    position: absolute;
+    top: 50%;
+    left: 23%;
+    transform: translateX(-50%);
+    text-align: left;
+
+    h1 {
+      font-weight: bold;
+      font-size: 42px;
+    }
+  }
+
   .btn {
     background: $color-accent;
     color: white;

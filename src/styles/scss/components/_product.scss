@@ -31,11 +31,19 @@
 
   .product {
     &__card {
-      width: 55%;
+      width: 80%;
       margin: auto;
       margin-top: 0;
       margin-bottom: 0;
       padding-bottom: 2rem;
+      border-radius: 0.3rem !important;
+      border: 1px solid black !important;
+      transition: 2s;
+      padding: 5px;
+      background: unset;
+      &:hover{
+        border: 1px solid white;
+      }
     }
 
     &__image {
@@ -46,7 +54,6 @@
 
       &:hover {
         cursor: pointer;
-        border: 2px solid var(--photoNegativeBlue);
         transition: 1s;
       }
     }
