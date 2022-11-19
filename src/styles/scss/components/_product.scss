@@ -12,6 +12,13 @@
   --trashYellow: #e1e002;
 }
 
+.header__container {
+  text-align: center;
+}
+
+.productHeader {
+  margin-top: 1%;
+}
 .products {
   display: block;
   margin: 3rem;
@@ -32,10 +39,16 @@
     }
 
     &__image {
-      border: 2px solid $text-primary;
+      border: 2px solid var(--darkBlack);
       width: 100%; /* You can set the dimensions to whatever you want */
       height: 20vw;
       object-fit: cover;
+
+      &:hover {
+        cursor: pointer;
+        border: 2px solid var(--photoNegativeBlue);
+        transition: 1s;
+      }
     }
 
     &__modalImage {
