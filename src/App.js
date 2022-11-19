@@ -11,6 +11,7 @@ import Nav from "./components/Nav.js";
 import CartNav from "./components/CartNav";
 import Checkout from "./components/Checkout";
 import Hero from "./components/Hero";
+import Footer from './components/Footer';
 
 // Pages
 import HomePage from "./Pages/HomePage.js";
