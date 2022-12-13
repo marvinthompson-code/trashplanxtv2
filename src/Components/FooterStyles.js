@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Box = styled.div`
   padding: 80px 60px;
   background: black;
+  border-top: 1px solid white;
   position: relative;
   bottom: 0;
   width: 100%;

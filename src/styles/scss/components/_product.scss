@@ -12,6 +12,27 @@
   --trashYellow: #e1e002;
 }
 
+@font-face {
+  font-family: 'HackRegular';
+  src: url('./../../fonts/Hack-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'unispaceBd';
+  src: url('./../../fonts/unispaceBd.ttf');
+}
+
+@font-face {
+  font-family: 'unispaceRg';
+  src: url('./../../fonts/unispace rg.ttf');
+}
+
+@font-face {
+  font-family: "monospace";
+  src: url('./../../fonts/nk57-monospace-ex-bd.ttf');
+}
+
+
 .header__container {
   text-align: center;
 }
@@ -36,12 +57,11 @@
       margin-top: 0;
       margin-bottom: 0;
       padding-bottom: 2rem;
-      border-radius: 0.3rem !important;
-      border: 1px solid black !important;
+      border: 1px solid rgb(255, 255, 255) !important;
       transition: 2s;
       padding: 5px;
       background: unset;
-      background-color: #ffff;
+      background-color: rgb(0, 0, 0);
       &:hover{
         border: 1px solid white;
       }
@@ -81,18 +101,22 @@
       color: $text-primary;
       padding-top: 1rem;
       padding-bottom: 0.25rem;
+      font-family: 'monospace';
+      text-align: center;
+      font-weight: 600;
     }
 
     &__details {
       display: flex;
       justify-content: space-between;
       margin-top: 0.75rem;
+      
     }
 
     &__price {
       align-self: center;
       margin: 0;
-      color: $text-grey;
+      color: $text-primary;
     }
 
     &__details {
@@ -106,6 +130,12 @@
       justify-content: center;
       max-width: 480px;
       margin: 0 auto;
+    }
+
+    &__description {
+      color: $text-primary;
+      text-align: left;
+      font-weight: 600;
     }
 
     &__btn {
